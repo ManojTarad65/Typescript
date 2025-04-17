@@ -89,4 +89,68 @@ console.log(weatherConditions.rainy);
 function greet(name) {
     return 'hello, ${name} !';
 }
-console.log(greet("Manoj"));
+console.log(greet("Manoj")); //hello, Manoj!
+// void -> does not return a value 
+function logMessage(message) {
+    console.log(logMessage);
+}
+//optional parameters -> users choice , if they dont want to share this and it like , its a optional choice .
+function welcome(name, age, gender) {
+}
+welcome("Manoj", 22);
+//Rest paramters -> you are not sure how many arguments you'll get.  example -> ...Numbers 
+function sum1(...numbers1) {
+    return numbers1.reduce((acc, curr) => acc + curr, 0);
+}
+console.log(sum1(1, 2, 3, 4, 5));
+// Function Type Annotations
+let multiply;
+multiply = function (a, b) {
+    return a * b;
+};
+console.log(multiply(5, 3));
+function display(id) {
+    return ` ID ${id}`;
+}
+console.log(display(123));
+console.log(display("Employee123"));
+//callback function ->  
+function fetchdata(callback) {
+    callback("data Received");
+}
+console.log(fetchdata);
+//real world  handling a login function 
+function login(name, passward) {
+    return username === "admin" && passward === "1234";
+}
+console.log(login("admin", "1234")); //true 
+console.log(login("manoj", "1234")); //false
+//creating a function named RegisterUser
+function RegisterUser(name, email, age) {
+    return `${name} (${age}) registered with email ${email}`;
+}
+const user2 = {
+    name: "manoj",
+    age: 22
+};
+const user3 = {
+    name: "manoj",
+    age: 22
+};
+const mydog = {
+    name: "tommy",
+    breed: "labrador"
+};
+const emp = {
+    name: "manoj",
+    salary: 22
+};
+function handleResponse(res) {
+    console.log(res.status, res.message);
+}
+const Post = {
+    title: "hello world",
+    content: "welcome to NowHere",
+    tags: "N!",
+    likes: 40000
+};
