@@ -206,4 +206,43 @@ function getAccess(user) {
 }
 //type assertions (as)
 // let input = document.getElementById("email") as HTMLInputElement;
-// console.log(input.value); -> typescript won't validate it! 
+// console.log(input.value); -> typescript won't validate it!
+//Classes & OOP in TypeScript -> Great for building reusable components, data models, and service layers.
+class person3 {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+    greet() {
+        console.log(`Hello, ${this.name}!`);
+    }
+}
+const manoj = new person3("manoj", 22);
+manoj.greet();
+//Inheritance -> allows a class to inherit properties and methods from another class
+class animal1 {
+    constructor(name) {
+        this.name = name;
+    }
+    makeNoise() {
+        console.log(`noise of : ${this.name}`);
+    }
+}
+class dog1 extends animal1 {
+    bark() {
+        console.log(`${this.name} : says woof`);
+    }
+}
+const dog2 = new dog1("tommu");
+dog2.makeNoise(); // noise of tommu
+dog2.bark(); // tommu: says woof
+//getters and setters -> used to access and modify private properties
+//Generics in TypeScript ->
+//Without Generics: You either lose type safety with any, or you repeat code for each type.
+//With Generics: One reusable function/class works with many types!
+function identity(value) {
+    return value;
+}
+console.log(identity("manoj"));
+console.log(identity(123));
+console.log(identity(true));
