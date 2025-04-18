@@ -341,3 +341,97 @@ console.log(identity<string>("manoj"));
 console.log(identity<number>(123));
 console.log(identity<boolean>(true));
 
+//Type Inference with Generics ->You can omit the type — TypeScript will infer it:
+ const result = identity("Typescript");
+ console.log(result);
+
+ //Generic Arrays
+function firstElement<T>(arr:T[]):T{
+    return arr[0];
+}
+console.log(firstElement<number>([1,2,3]));  //1
+console.log(firstElement<string>(["a","b","c"]));  //a
+ 
+// Multiple Type Parameters
+function merge<T, U>(obj1: T, obj2: U): T & U {
+    return {...obj1, ...obj2};
+  }
+  const merged = merge({name: "Manoj"}, {age: 21});
+  console.log(merged); // {name: 'Manoj', age: 21}
+
+
+  //Generics in Interfaces ->
+  interface ApiResponse1<T>{
+    status:number;
+    data:T;
+  }
+  const userResponse : ApiResponse1<{name:string, age:number}> = {
+            status:200,
+            data:{
+                name:"manoj",
+                age:22,
+            }
+        }
+
+
+//Utility Types in TypeScript ->They are built-in generic types that help you transform, extend, or restrict types easily.They're super useful in form validation, API response shaping, frontend props management, and more.
+
+//1.Readonly -> makes all properties readonly
+interface User{
+    name:string;
+    age:number;
+}
+const readOnlyUser: Readonly<User> = {name:"manoj", age:22};
+
+
+//2. Partial<T> -> Makes all properties optional.
+interface User{
+    name:string;
+    age:number;
+  }
+  const updateUser = (user: Partial<User>)=> {
+    console.log(user);
+  }
+  updateUser({ name: "Manoj" });
+  updateUser({ age: 21 });
+
+//3. Required<T> -> Makes all properties required.
+interface User {
+    name: string;
+    age: number;
+  }
+  const updateUser1=(user: Required<User>)=> {
+    console.log(user);
+  };
+  updateUser1({name: "Manoj", age: 21});
+
+//4. Pick<T, K> -> Pick only specific keys from a type.
+interface User{
+    name:string;
+    age:number;
+  }
+  const updateUser2 =(user: Pick<User, "name"|"age">) => {
+    console.log(user);
+  };
+  updateUser2({name: "Manoj", age: 21});
+
+//5. Omit<T, K> -> Omit specific keys from a type.
+interface User{
+    name:string;
+    age:number;
+  }
+  const updateUser3 =(user: Omit<User, "name" | "age">) => {
+    console.log(user);
+  };
+  updateUser3({});
+
+
+//6. Record<T, K> -> Creates a type with keys of type K and values of type T.
+type Roles = "admin" | "user" | "guest";
+type RolePermissions = Record<Roles, string[]>;
+
+const permissions: RolePermissions = {
+  admin: ["create", "delete", "update"],
+  user: ["read", "comment"],
+  guest: ["read"],
+};

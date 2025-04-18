@@ -246,3 +246,48 @@ function identity(value) {
 console.log(identity("manoj"));
 console.log(identity(123));
 console.log(identity(true));
+//Type Inference with Generics ->You can omit the type — TypeScript will infer it:
+const result = identity("Typescript");
+console.log(result);
+//Generic Arrays
+function firstElement(arr) {
+    return arr[0];
+}
+console.log(firstElement([1, 2, 3])); //1
+console.log(firstElement(["a", "b", "c"])); //a
+// Multiple Type Parameters
+function merge(obj1, obj2) {
+    return Object.assign(Object.assign({}, obj1), obj2);
+}
+const merged = merge({ name: "Manoj" }, { age: 21 });
+console.log(merged); // {name: 'Manoj', age: 21}
+const userResponse = {
+    status: 200,
+    data: {
+        name: "manoj",
+        age: 22,
+    }
+};
+const readOnlyUser = { name: "manoj", age: 22 };
+const updateUser = (user) => {
+    console.log(user);
+};
+updateUser({ name: "Manoj" });
+updateUser({ age: 21 });
+const updateUser1 = (user) => {
+    console.log(user);
+};
+updateUser1({ name: "Manoj", age: 21 });
+const updateUser2 = (user) => {
+    console.log(user);
+};
+updateUser2({ name: "Manoj", age: 21 });
+const updateUser3 = (user) => {
+    console.log(user);
+};
+updateUser3({});
+const permissions = {
+    admin: ["create", "delete", "update"],
+    user: ["read", "comment"],
+    guest: ["read"],
+};
