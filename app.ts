@@ -227,3 +227,70 @@ const Post:blogPost ={
     tags:"N!",
     likes:40000
 }
+// Type Narrowing -> whenever our codes accpt multiple types or works with unknown data, we need to "narrow down" the exact type before performing operations.
+
+//When a variable can have multiple types, use typeof to narrow it:
+function printID(id: number | string){
+    if(typeof id==="string"){
+    console.log("Uppercased ID:", id.toUpperCase());
+    }
+    else {
+        console.log("formatted ID:", id.toFixed(2));
+    }
+}
+printID("user_1");
+printID(12.345);
+
+//You can use the in keyword to check if a property exists.
+type user4 ={name:string , email:string};
+type Guest={name:string};
+
+    function getUserInfo (user:user4 | Guest){
+        if("email" in user){
+            console.log("logged-in user:", user.email);
+        }
+        else {
+            console.log("Guest user:" , user.name);
+        }
+    }
+
+//Type Narrowing with instanceof -> used when dealing with classes
+class car{
+    drive (){
+        console.log("driving a car ...");
+    }
+}
+class Truck{
+    loadCargo(){
+        console.log("loading a cargo...");
+    }
+}
+
+function useVehicle(vehicle: car | Truck){
+    if(vehicle instanceof Truck){
+        vehicle.loadCargo();
+    }else {
+        vehicle.drive();
+    }
+}
+
+// Custom Type Guards (Important for real-world)
+type admin={role:"admin"; access:string[]};
+type Member ={role:"member";subscription: string};
+
+function isAdmin (user:admin | Member): user is admin{
+        return user.role==="admin";
+}
+function getAccess(user: admin | Member){
+    if(isAdmin(user)){
+        console.log("Admin Access :" , user.access);
+    } else{
+        console.log("Member plan:" , user.subscription);
+    }
+}
+
+//type assertions (as)
+// let input = document.getElementById("email") as HTMLInputElement;
+// console.log(input.value); -> typescript won't validate it! 
+
+ 
